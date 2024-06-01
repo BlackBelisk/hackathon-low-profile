@@ -50,7 +50,7 @@ def main():
                 print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
                 #screen.genera_fichero()
                 foto.take_photo()
-                foto.get_photo()
+                #foto.get_photo()
                 break
             else:
                 print("Esperando conexión ADB del dispositivo Android...")
