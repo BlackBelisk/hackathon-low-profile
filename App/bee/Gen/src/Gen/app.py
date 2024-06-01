@@ -5,9 +5,6 @@ from toga.style import Pack
 from toga.style.pack import COLUMN, CENTER
 from toga import App, Box, Label, MainWindow
 
-
-
-
 class RandomCodeApp(App):
     def startup(self):
         self.main_window = MainWindow(title=self.formal_name)
