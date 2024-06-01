@@ -35,23 +35,18 @@ def take_screenshot():
     subprocess.run(['adb', 'shell', 'screencap', '-p', '/storage/emulated/0/screenshot.png'])
     print("Captura de pantalla tomada y guardada en /storage/emulated/0/screenshot.png")
 
-def main():
-    restart_adb_server()
-    while True:
-        device = find_android_device()
-        if device:
-            print("Dispositivo Android detectado por USB")
-            adb_devices = get_connected_devices()
-            if adb_devices:
-                print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
-                take_screenshot()
-                break
-            else:
-                print("Esperando conexión ADB del dispositivo Android...")
-                time.sleep(1)
+def tomarCaptura():
+    ##restart_adb_server()
+    device = find_android_device()
+    if device:
+        print("Dispositivo Android detectado por USB")
+        adb_devices = get_connected_devices()
+        if adb_devices:
+            print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
+            take_screenshot()
         else:
-            print("Esperando conexión de dispositivo Android por USB...")
+            print("Esperando conexión ADB del dispositivo Android...")
             time.sleep(1)
-
-if __name__ == "__main__":
-    main()
+    else:
+        print("Esperando conexión de dispositivo Android por USB...")
+        time.sleep(1)
