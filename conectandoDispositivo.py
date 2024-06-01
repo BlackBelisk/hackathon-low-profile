@@ -16,7 +16,10 @@ else:
 
 def find_android_device():
     device = identifier.get_last_connected_device()
-    if device and device[0] in ids:
+    if device:
+        elem = list(device)
+        print(elem[0])
+    if device and elem[0] in ids:
         return usb.core.find(find_all=True, idVendor=device, backend=backend)  # idVendor es el ID de Google para dispositivos Android
     else:
         return None
@@ -36,7 +39,7 @@ def get_connected_devices():
 ###    subprocess.run(['adb', 'shell', 'screencap', '-p', '/storage/emulated/0/screenshot.png'])
 ###    print("Captura de pantalla tomada y guardada en /storage/emulated/0/screenshot.png")
 
-def captura():
+def main():
     ##restart_adb_server()
     while(True):
         device = find_android_device()
@@ -55,3 +58,6 @@ def captura():
         else:
             print("Esperando conexión de dispositivo Android por USB...")
             time.sleep(1)
+
+if __name__ == "__main__":
+    main()
