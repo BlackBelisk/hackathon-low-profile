@@ -16,7 +16,10 @@ else:
 
 def find_android_device():
     device = identifier.get_last_connected_device()
-    if device and device[0] in ids:
+    if device:
+        elem = list(device)
+        print(elem[0])
+    if device and elem[0] in ids:
         return usb.core.find(find_all=True, idVendor=device, backend=backend)  # idVendor es el ID de Google para dispositivos Android
     else:
         return None
