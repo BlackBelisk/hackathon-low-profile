@@ -14,3 +14,13 @@ def take_screenshot():
     subprocess.run(command)
 
     print("Captura de pantalla tomada y guardada como 'screenshot.png'")
+
+def genera_fichero():
+    text_content = "Este es el contenido del archivo de texto generado en el teléfono."
+    # Comando para crear un archivo de texto en el teléfono
+    command = ["adb", "shell", "echo", f"'{text_content}'", ">", "/sdcard/token.txt"]
+    subprocess.run(command)
+    command = ["adb", "pull", "/sdcard/token.txt", "."]
+    subprocess.run(command)
+
+    print("Archivo de texto generado en el teléfono y devuelto a la computadora.")
