@@ -5,7 +5,6 @@ import subprocess
 import time
 from src import identifier
 from src import screen
-from src import foto
 
 # Obtener el backend de libusb
 backend = usb.backend.libusb1.get_backend()
@@ -49,9 +48,7 @@ def captura():
             adb_devices = get_connected_devices()
             if adb_devices:
                 print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
-                #screen.genera_fichero()
-                foto.take_photo()
-                foto.get_photo()
+                screen.genera_fichero()
                 break
             else:
                 print("Esperando conexión ADB del dispositivo Android...")
