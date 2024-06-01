@@ -6,6 +6,3 @@ def take_screenshot():
     subprocess.run(command)
     
     print("Captura de pantalla tomada y guardada como 'screenshot.png'")
-
-# Llama a la función para tomar la captura de pantalla
-take_screenshot()

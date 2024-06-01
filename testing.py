@@ -5,6 +5,8 @@ import time
 import win32file
 import win32event
 import win32con
+import screen
+import identifier
 
 def list_usb_devices():
     devices = [dev for dev in usb.core.find(find_all=True)]
@@ -32,9 +34,12 @@ def detect_usb_events():
             if result == win32event.WAIT_OBJECT_0:
                 current_devices = list_usb_devices()
                 if len(current_devices) > len(initial_devices):
-                    print("1")  # Device connected
+                    device = identifier.get_last_connected_device()
+                    if device:
+                        print(device)
                 elif len(current_devices) < len(initial_devices):
-                    print("0")  # Device disconnected
+                    identifier.get_last_connected_device()  # Device disconnected
+                    print("Dispositivo desconectado.")
                 
                 initial_devices = current_devices
 

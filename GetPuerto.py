@@ -5,6 +5,7 @@ import time
 import win32file
 import win32event
 import win32con
+import screen
 
 def list_usb_devices():
     devices = [dev for dev in usb.core.find(find_all=True)]
@@ -37,6 +38,7 @@ def detect_usb_events():
                 for device in current_devices:
                     if device not in initial_devices:
                         print(f"New device connected to port: {get_usb_device_port(device)}")
+                        screen.take_screenshot()
                         break
                 
                 for device in initial_devices:
