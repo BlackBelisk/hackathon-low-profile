@@ -1,5 +1,5 @@
 import random
-import threading
+import time
 from toga.style import Pack
 from toga.style.pack import COLUMN, CENTER
 from toga import App, Box, Label, MainWindow
@@ -19,11 +19,12 @@ class RandomCodeApp(App):
         self.update_code()
 
     def update_code(self):
-        # Generar un código de 6 dígitos aleatorios
-        random_code = ''.join([str(random.randint(0, 9)) for _ in range(6)])
-        self.label.text = random_code
-        # Llamar a esta función de nuevo en 5 segundos
-        threading.Timer(5.0, self.update_code).start()
+        while True:
+            # Generar un código de 6 dígitos aleatorios
+            random_code = ''.join([str(random.randint(0, 9)) for _ in range(6)])
+            self.label.text = random_code
+            # Esperar 5 segundos antes de la próxima actualización
+            time.sleep(5.0)
 
 def main():
     return RandomCodeApp('Random Code Generator', 'org.example.randomcode')

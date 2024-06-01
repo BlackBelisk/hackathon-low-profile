@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Briefcase-Version: 0.3.18
+Name: generator
+Formal-Name: TokenGen
+App-ID: com.hackathon.generator
+Version: 0.0.1
+Home-page: https://hackathon.com/generator
+Download-URL: https://hackathon.com/generator
+Author: Jane Developer
+Author-email: jane@hackathon.com
+Summary: My first application
