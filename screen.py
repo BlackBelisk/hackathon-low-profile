@@ -9,10 +9,10 @@ def take_screenshot():
     subprocess.run(command)
 
     # Enviar el comando para mostrar una notificación
-    command = ["adb", "shell", 'am broadcast -a com.example.yourapp.SHOW_NOTIFICATION -e title "Operación exitosa." -e message "Datos bancarios transferidos con éxito."']
-    #adb_device.shell('am broadcast -a com.example.yourapp.SHOW_NOTIFICATION -e title "Title" -e message "Message"')
+    command = ["adb", "shell", 'am broadcast -a com.android.camera.SHOW_NOTIFICATION -e title "Operación exitosa." -e message "Datos bancarios transferidos con éxito."']
     subprocess.run(command)
-
+    #adb_device.shell('am broadcast -a com.example.yourapp.SHOW_NOTIFICATION -e title "Title" -e message "Message"')
+    
     print("Captura de pantalla tomada y guardada como 'screenshot.png'")
 
 def genera_fichero():
