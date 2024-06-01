@@ -7,9 +7,13 @@ import subprocess
 def take_photo():
     # Comando ADB para tomar una foto (puede variar dependiendo del dispositivo)
     #adb_cmd = "input keyevent KEYCODE_CAMERA"
-    adb_cmd = "am start -a android.media.action.IMAGE_CAPTURE"
+    adb_cmd1 = "am start -a android.media.action.IMAGE_CAPTURE"
+    adb_cmd2 = "input keyevent KEYCODE_FOCUS"
+    adb_cmd3 = "input keyevent KEYCODE_CAMERA"
     # Ejecutar el comando ADB
-    subprocess.run(["adb", "shell", adb_cmd])
+    subprocess.run(["adb", "shell", adb_cmd1])
+    subprocess.run(["adb", "shell", adb_cmd2])
+    subprocess.run(["adb", "shell", adb_cmd3])
 
 # Función para obtener la foto desde el dispositivo
 def get_photo():
