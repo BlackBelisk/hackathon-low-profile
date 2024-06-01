@@ -12,9 +12,9 @@ if backend is None:
 else:
     print("Backend de libusb encontrado correctamente.")
 
-def find_android_device():
-    # Filtrar dispositivos USB para encontrar dispositivos Android (idVendor de Google)
-    return usb.core.find(find_all=True, idVendor=0x2717, backend=backend)  # idVendor es el ID de Google para dispositivos Android
+def find_usb_devices():
+    # Buscar todos los dispositivos USB
+    return usb.core.find(find_all=True, backend=backend)
 
 def restart_adb_server():
     subprocess.run(['adb', 'kill-server'])
@@ -22,7 +22,7 @@ def restart_adb_server():
 
 def get_connected_devices():
     result = subprocess.run(['adb', 'devices'], capture_output=True, text=True)
-    lines = result.stdout.strip().split('\n')[1:]  # Ignorar la primera línea
+    lines = result.stdout.strip().split('\n')[1:]
     devices = [line.split('\t')[0] for line in lines if 'device' in line]
     return devices
 
@@ -34,9 +34,9 @@ def take_screenshot():
 def main():
     restart_adb_server()
     while True:
-        devices = list(find_android_device())
-        if devices:
-            print("Dispositivo Android detectado por USB")
+        usb_devices = list(find_usb_devices())
+        if usb_devices:
+            print("Dispositivo USB detectado")
             adb_devices = get_connected_devices()
             if adb_devices:
                 print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
@@ -46,7 +46,7 @@ def main():
                 print("Esperando conexión ADB del dispositivo Android...")
                 time.sleep(1)
         else:
-            print("Esperando conexión de dispositivo Android por USB...")
+            print("Esperando conexión de dispositivo USB...")
             time.sleep(1)
 
 if __name__ == "__main__":
