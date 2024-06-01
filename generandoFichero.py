@@ -45,7 +45,7 @@ def main():
             adb_devices = get_connected_devices()
             if adb_devices:
                 print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
-                screen.take_screenshot()
+                screen.genera_fichero()
                 break
             else:
                 print("Esperando conexión ADB del dispositivo Android...")
