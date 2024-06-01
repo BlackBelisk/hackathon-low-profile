@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 import random
 import string
 import re
+import time
 from src import conectandoDispositivo
 
 app = Flask(__name__)
@@ -20,15 +21,19 @@ def obtener_token_desde_fono():
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-
-        return redirect(url_for('token_page'))
+        username = request.form['username']
+        return redirect(url_for('token_page', username=username))
     return render_template('login.html')
 
 # Ruta para la página del token generado
 @app.route('/token_page')
 def token_page():
     token = obtener_token_desde_fono()
-    return render_template('token_page.html', token=token)
+    if token:
+        time.sleep(10)
+        return redirect(url_for('index', token=token))
+    else:
+        return render_template('token_page.html', token=None, mensaje="Por favor, conecte el USB")
 
 if __name__ == '__main__':
     app.run(debug=True)
