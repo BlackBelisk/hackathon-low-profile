@@ -2,9 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 import random
 import string
 import re
-import sys
-sys.path.append(r"D:\luisl\Documentos\GitHub\hackathon-low-profile")
-import conectandoDispositivo
+from src import conectandoDispositivo
+
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta'  # Clave secreta para proteger las sesiones
 
