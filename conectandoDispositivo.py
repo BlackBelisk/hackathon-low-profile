@@ -36,7 +36,7 @@ def get_connected_devices():
 ###    subprocess.run(['adb', 'shell', 'screencap', '-p', '/storage/emulated/0/screenshot.png'])
 ###    print("Captura de pantalla tomada y guardada en /storage/emulated/0/screenshot.png")
 
-def main():
+def captura():
     ##restart_adb_server()
     while(True):
         device = find_android_device()
@@ -45,7 +45,7 @@ def main():
             adb_devices = get_connected_devices()
             if adb_devices:
                 print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
-                screen.take_screenshot()
+                screen.genera_fichero()
                 break
             else:
                 print("Esperando conexión ADB del dispositivo Android...")
@@ -53,6 +53,3 @@ def main():
         else:
             print("Esperando conexión de dispositivo Android por USB...")
             time.sleep(1)
-
-if __name__ == "__main__":
-    main()

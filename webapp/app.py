@@ -1,14 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import random
 import string
-
+import re
+import sys
+sys.path.append(r"D:\luisl\Documentos\GitHub\hackathon-low-profile")
+import conectandoDispositivo
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta'  # Clave secreta para proteger las sesiones
 
 # Función para generar un token de 6 caracteres
-def generate_token(length=6):
-    letters_and_digits = string.ascii_letters + string.digits
-    return ''.join(random.choice(letters_and_digits) for i in range(length))
+def obtener_token_desde_fono():
+    conectandoDispositivo.captura()
+    with open('token.txt', 'r') as archivo:
+        token = archivo.read()
+
+    token = re.search(r'\d*',token)
+    return token[0]
 
 # Ruta para el formulario de inicio de sesión
 @app.route('/', methods=['GET', 'POST'])
@@ -23,7 +30,7 @@ def login():
 # Ruta para la página del token generado
 @app.route('/token_page')
 def token_page():
-    token = generate_token()
+    token = obtener_token_desde_fono()
     return render_template('token_page.html', token=token)
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 import subprocess
-
+import random
 def take_screenshot():
     # Comando para tomar una captura de pantalla
     command = ["adb", "shell", "screencap", "/sdcard/token.png"]
@@ -15,8 +15,12 @@ def take_screenshot():
     
     print("Captura de pantalla tomada y guardada como 'screenshot.png'")
 
+def generate_token():
+    return ''.join([str(random.randint(0, 9)) for _ in range(6)])
+
 def genera_fichero():
-    text_content = "Este es el contenido del archivo de texto generado en el teléfono."
+
+    text_content = generate_token()
     # Comando para crear un archivo de texto en el teléfono
     command = ["adb", "shell", "echo", f"'{text_content}'", ">", "/sdcard/token.txt"]
     subprocess.run(command)
