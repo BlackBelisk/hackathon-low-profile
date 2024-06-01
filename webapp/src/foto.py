@@ -28,6 +28,6 @@ def get_photo():
     subprocess.run(["adb", adb_cmd])
 
 # Tomar una foto
-take_photo()
+#take_photo()
 # Obtener la foto
-get_photo()
+#get_photo()
