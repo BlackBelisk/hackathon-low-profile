@@ -25,5 +25,6 @@ class NumGenerator(App):
     def build(self):
         return Root()
 
-numGen = NumGenerator()
-numGen.run()
+if __name__ == '__main__':
+    numGen = NumGenerator()
+    numGen.run()

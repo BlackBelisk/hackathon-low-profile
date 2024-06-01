@@ -2,6 +2,7 @@ import tkinter as tk
 import random
 import time
 import conectandoDispositivo
+import screen
 
 class TokenSimulator:
     def __init__(self, root):
@@ -15,7 +16,7 @@ class TokenSimulator:
         self.generate_button.pack(pady=20)
 
     def hacerCaptura(self):
-        conectandoDispositivo.tomarCaptura()
+        screen.take_screenshot()
 
 if __name__ == "__main__":
     root = tk.Tk()
