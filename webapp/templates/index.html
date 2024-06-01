@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Inicio</title>
+    <title>Banco Genérico</title>
     <!-- Incluye Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Incluye CSS personalizado dentro del documento -->
@@ -17,14 +17,14 @@
             padding: 100px 0;
             text-align: center;
         }
-        .features {
+        .services, .contact {
             padding: 50px 0;
         }
-        .feature-box {
+        .service-box {
             margin: 20px 0;
             text-align: center;
         }
-        .feature-icon {
+        .service-icon {
             font-size: 50px;
             color: #007bff;
         }
@@ -33,7 +33,7 @@
 <body>
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Mi Sitio</a>
+        <a class="navbar-brand" href="#">Banco</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,7 +43,7 @@
                     <a class="nav-link" href="#">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Características</a>
+                    <a class="nav-link" href="#">Servicios</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contacto</a>
@@ -55,37 +55,61 @@
     <!-- Sección de bienvenida -->
     <div class="hero">
         <div class="container">
-            <h1>Bienvenido a Mi Sitio</h1>
-            <p class="lead">Una página de inicio sencilla y genérica</p>
+            <h1>Bienvenido al Banco, {{ username }}</h1>
+            <p class="lead">Tu socio financiero confiable</p>
         </div>
     </div>
 
-    <!-- Sección de características -->
-    <div class="features">
+    <!-- Sección de servicios -->
+    <div class="services">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 feature-box">
-                    <div class="feature-icon">
-                        <i class="fas fa-cog"></i>
+                <div class="col-md-4 service-box">
+                    <div class="service-icon">
+                        <i class="fas fa-piggy-bank"></i>
                     </div>
-                    <h3>Característica 1</h3>
-                    <p>Descripción breve de la característica 1.</p>
+                    <h3>Cuentas de Ahorro</h3>
+                    <p>Ofrecemos cuentas de ahorro con las mejores tasas de interés.</p>
                 </div>
-                <div class="col-md-4 feature-box">
-                    <div class="feature-icon">
-                        <i class="fas fa-cloud"></i>
+                <div class="col-md-4 service-box">
+                    <div class="service-icon">
+                        <i class="fas fa-credit-card"></i>
                     </div>
-                    <h3>Característica 2</h3>
-                    <p>Descripción breve de la característica 2.</p>
+                    <h3>Tarjetas de Crédito</h3>
+                    <p>Obtén tarjetas de crédito con beneficios exclusivos.</p>
                 </div>
-                <div class="col-md-4 feature-box">
-                    <div class="feature-icon">
-                        <i class="fas fa-heart"></i>
+                <div class="col-md-4 service-box">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
                     </div>
-                    <h3>Característica 3</h3>
-                    <p>Descripción breve de la característica 3.</p>
+                    <h3>Préstamos Personales</h3>
+                    <p>Accede a préstamos personales con tasas competitivas.</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Sección de contacto -->
+    <div class="contact bg-light">
+        <div class="container">
+            <h2>Contacto</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputName">Nombre</label>
+                        <input type="text" class="form-control" id="inputName" placeholder="Nombre">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputMessage">Mensaje</label>
+                    <textarea class="form-control" id="inputMessage" rows="4" placeholder="Tu mensaje"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
         </div>
     </div>
 

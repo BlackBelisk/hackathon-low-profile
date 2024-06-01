@@ -33,13 +33,30 @@
             <div class="col-md-6 col-sm-10 col-xs-12 text-center">
                 <h1>Token Generado</h1>
                 <div class="token-box">
-                    {% for char in token %}
-                        <div class="token-character">{{ char }}</div>
-                    {% endfor %}
+                    {% if token %}
+                        {% for char in token %}
+                            <div class="token-character">{{ char }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ mensaje }}</p>
+                        <!-- Recuadros vacíos -->
+                        <div class="token-character"></div>
+                        <div class="token-character"></div>
+                        <div class="token-character"></div>
+                        <div class="token-character"></div>
+                        <div class="token-character"></div>
+                        <div class="token-character"></div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // Función para redireccionar al index después de 10 segundos
+        setTimeout(function() {
+            window.location.href = "/index"; // Redirige al index
+        }, 10000); // 10000 milisegundos = 10 segundos
+    </script>
 </body>
 </html>
 
