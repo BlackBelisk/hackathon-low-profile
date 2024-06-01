@@ -4,7 +4,7 @@ import time
 if __name__ == "__main__":
     intento.doxxeo()
 
-    time.sleep(2)
+    time.sleep(3)
 
     # Especifica el título de la ventana que deseas capturar
     window_title = ScreenVentana.get_device_model()
