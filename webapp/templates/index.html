@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <!-- Incluye Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluye CSS personalizado dentro del documento -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .hero {
+            background: #007bff;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .features {
+            padding: 50px 0;
+        }
+        .feature-box {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 50px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Mi Sitio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Características</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sección de bienvenida -->
+    <div class="hero">
+        <div class="container">
+            <h1>Bienvenido a Mi Sitio</h1>
+            <p class="lead">Una página de inicio sencilla y genérica</p>
+        </div>
+    </div>
+
+    <!-- Sección de características -->
+    <div class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Característica 1</h3>
+                    <p>Descripción breve de la característica 1.</p>
+                </div>
+                <div class="col-md-4 feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Característica 2</h3>
+                    <p>Descripción breve de la característica 2.</p>
+                </div>
+                <div class="col-md-4 feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Característica 3</h3>
+                    <p>Descripción breve de la característica 3.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incluye Bootstrap y FontAwesome JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
