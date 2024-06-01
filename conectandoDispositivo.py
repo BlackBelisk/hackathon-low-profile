@@ -3,6 +3,7 @@ import usb.util
 import usb.backend.libusb1
 import subprocess
 import time
+import identifier
 
 # Obtener el backend de libusb
 backend = usb.backend.libusb1.get_backend()
@@ -13,8 +14,11 @@ else:
     print("Backend de libusb encontrado correctamente.")
 
 def find_android_device():
-    # Filtrar dispositivos USB para encontrar dispositivos Android (idVendor de Google)
-    return usb.core.find(find_all=True, idVendor=0x2717, backend=backend)  # idVendor es el ID de Google para dispositivos Android
+    device = identifier.get_last_connected_device()
+    if device:
+        return usb.core.find(find_all=True, idVendor=device, backend=backend)  # idVendor es el ID de Google para dispositivos Android
+    else:
+        return None
 
 def restart_adb_server():
     subprocess.run(['adb', 'kill-server'])
@@ -34,8 +38,8 @@ def take_screenshot():
 def main():
     restart_adb_server()
     while True:
-        devices = list(find_android_device())
-        if devices:
+        device = find_android_device()
+        if device:
             print("Dispositivo Android detectado por USB")
             adb_devices = get_connected_devices()
             if adb_devices:

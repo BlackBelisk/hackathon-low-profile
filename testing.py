@@ -36,7 +36,7 @@ def detect_usb_events():
                 if len(current_devices) > len(initial_devices):
                     device = identifier.get_last_connected_device()
                     if device:
-                        print(device)
+                        print("idVendor: ", device)
                 elif len(current_devices) < len(initial_devices):
                     identifier.get_last_connected_device()  # Device disconnected
                     print("Dispositivo desconectado.")

@@ -27,7 +27,7 @@ def get_last_connected_device():
         if device not in current_devices:
             disconnected_device = device
             break
-        
+
     # Actualizar la lista de dispositivos anteriores
     previous_devices = current_devices
 
@@ -42,8 +42,7 @@ update_device_list()
 def find_device(device):
     try:
         return {
-            "idVendor": hex(device.idVendor),
-            "idProduct": hex(device.idProduct),
+            hex(device.idVendor)
         }
     except usb.core.USBError as e:
         print(f"Error al obtener información del dispositivo: {e}")

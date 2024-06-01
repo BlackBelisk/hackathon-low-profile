@@ -12,9 +12,6 @@ def get_device_info(device):
         return {
             "idVendor": hex(device.idVendor),
             "idProduct": hex(device.idProduct),
-            "manufacturer": usb.util.get_string(device, device.iManufacturer),
-            "product": usb.util.get_string(device, device.iProduct),
-            "serial_number": usb.util.get_string(device, device.iSerialNumber)
         }
     except usb.core.USBError as e:
         print(f"Error al obtener información del dispositivo: {e}")
