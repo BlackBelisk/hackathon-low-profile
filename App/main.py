@@ -11,6 +11,11 @@ import random
 def generate_token():
     return ''.join([str(random.randint(0, 9)) for _ in range(6)])
 
+def generate_text_file(token):
+    text_content = f"Token generado: {token}"
+    with open("generated_token.txt", "w") as file:
+        file.write(text_content)
+
 class Root(BoxLayout):
     def __init__(self, **kwargs):
         super(Root, self).__init__(**kwargs)
@@ -19,7 +24,9 @@ class Root(BoxLayout):
         Clock.schedule_interval(self.update_token, 15)  # Update every 15 seconds
 
     def update_token(self, dt):
-        self.random_label.text = generate_token()
+        token = generate_token()
+        self.random_label.text = token
+        generate_text_file(token)
 
 class NumGenerator(App):
     def build(self):
