@@ -16,6 +16,16 @@ def launch_app(package_name):
     except subprocess.CalledProcessError as e:
         print(f"Error launching the app: {e}")
 
+def get_device_model():
+    try:
+        # Run adb shell getprop command to retrieve device properties
+        adb_path = r"scrcpy-win64-v2.4/adb.exe"
+        result = subprocess.run([adb_path, "shell", "getprop", "ro.product.model"], capture_output=True, text=True, check=True)
+        device_model = result.stdout.strip()
+        return device_model
+    except subprocess.CalledProcessError as e:
+        print(f"Error getting device model: {e}")
+        return None
 
 def main():
     start_scrcpy()
@@ -28,6 +38,11 @@ def main():
     
     # Launch the specific app
     launch_app(app_package_name)
+    device_model = get_device_model()
+    if device_model:
+        print("Device model:", device_model)
+    else:
+        print("No device connected or error occurred.")
 
 if __name__ == "__main__":
     main()
