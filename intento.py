@@ -27,7 +27,7 @@ def get_device_model():
         print(f"Error getting device model: {e}")
         return None
 
-def main():
+def doxxeo():
     start_scrcpy()
     
     # Package name of the app you want to open
@@ -38,11 +38,5 @@ def main():
     
     # Launch the specific app
     launch_app(app_package_name)
-    device_model = get_device_model()
-    if device_model:
-        print("Device model:", device_model)
-    else:
-        print("No device connected or error occurred.")
 
-if __name__ == "__main__":
-    main()
+
