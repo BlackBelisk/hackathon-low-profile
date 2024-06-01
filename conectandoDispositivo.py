@@ -8,7 +8,7 @@ import screen
 
 # Obtener el backend de libusb
 backend = usb.backend.libusb1.get_backend()
-ids = {0x2717, 0x04e8, 0x12D1, 0x22b8, 0x0421, 0x18d1, 0x22D9}
+ids = {'0x2717', '0x04e8', '0x12D1', '0x22b8', '0x0421', '0x18d1', '0x22D9'}
 if backend is None:
     print("No se encontró el backend de libusb. Asegúrate de que libusb-1.0.dll está en el PATH.")
 else:
@@ -16,7 +16,7 @@ else:
 
 def find_android_device():
     device = identifier.get_last_connected_device()
-    if device and device in ids:
+    if device and device[0] in ids:
         return usb.core.find(find_all=True, idVendor=device, backend=backend)  # idVendor es el ID de Google para dispositivos Android
     else:
         return None
