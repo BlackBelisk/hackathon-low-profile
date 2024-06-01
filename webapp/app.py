@@ -20,9 +20,7 @@ def obtener_token_desde_fono():
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # Verificar las credenciales de inicio de sesión (aquí debes agregar tu lógica de autenticación)
-        # Por ejemplo, si las credenciales son válidas, podrías redirigir al usuario a la página del token
-        # Aquí simplemente redirigimos al usuario a la página del token
+
         return redirect(url_for('token_page'))
     return render_template('login.html')
 
