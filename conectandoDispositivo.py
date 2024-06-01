@@ -5,6 +5,7 @@ import time
 from adb_shell.adb_device import AdbDeviceUsb
 from adb_shell.auth.sign_pythonrsa import PythonRSASigner
 import os
+import subprocess
 
 # Obtener el backend de libusb
 backend = usb.backend.libusb1.get_backend()
@@ -19,25 +20,11 @@ else:
         return usb.core.find(find_all=True, idVendor=0x18d1, backend=backend)  # idVendor es el ID de Google para dispositivos Android
 
     def take_screenshot():
-        adbkey = '"C:\Users\Admin\.android"'
-
-        # Cargar la clave privada para la autenticación
-        with open(adbkey) as f:
-            priv = f.read()
-        with open(f'{adbkey}.pub') as f:
-            pub = f.read()
-
-        signer = PythonRSASigner(pub, priv)
-
-        # Conectar al dispositivo (asegúrate de que la depuración USB esté habilitada en el dispositivo)
-        device = AdbDeviceUsb()
-
-        # Autenticar
-        device.connect(rsa_keys=[signer], auth_timeout_s=0.1)
-
-        # Tomar una captura de pantalla y guardarla en el almacenamiento interno
-        device.shell('screencap -p /storage/emulated/0/screenshot.png')
-        print("Captura de pantalla tomada y guardada en /storage/emulated/0/screenshot.png")
+    # Comando para tomar una captura de pantalla
+        command = ["adb", "shell", "screencap", "/sdcard/screenshot.png"]
+        subprocess.run(command)
+    
+    print("Captura de pantalla tomada y guardada como 'screenshot.png'")
 
     def main():
         while True:
