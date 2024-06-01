@@ -3,7 +3,10 @@ import random
 import string
 import re
 import sys
-sys.path.append(r"D:\luisl\Documentos\GitHub\hackathon-low-profile")
+import os
+
+carpeta1_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(carpeta1_path)
 import conectandoDispositivo
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta'  # Clave secreta para proteger las sesiones
