@@ -33,6 +33,10 @@ def procesarATexto(AUTH, image_path):
 
     result = result.split(' ')
     result = ''.join(filter(str.isdigit, result))
+    
+    if result == '':
+        return False
+    
     return result
 
 # imagen = 'intentoDificil.jpg'
