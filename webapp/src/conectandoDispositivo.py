@@ -41,18 +41,21 @@ def get_connected_devices():
 
 def captura():
     ##restart_adb_server()
-    while(True):
-        device = find_android_device()
-        if device:
-            print("Dispositivo Android detectado por USB")
-            adb_devices = get_connected_devices()
-            if adb_devices:
-                print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
-                #screen.genera_fichero()
-                break
-            else:
-                print("Esperando conexión ADB del dispositivo Android...")
-                time.sleep(1)
+    #while True:
+    device = find_android_device()
+    if device:
+        print("Dispositivo Android detectado por USB")
+        adb_devices = get_connected_devices()
+        if adb_devices:
+            print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
+            #time.sleep(1)
+            #screen.genera_fichero()
+            return True
         else:
-            print("Esperando conexión de dispositivo Android por USB...")
-            time.sleep(1)
+            print("Esperando conexión ADB del dispositivo Android...")
+            #time.sleep(1)
+            return False
+    else:
+        print("Esperando conexión de dispositivo Android por USB...")
+        #time.sleep(1)
+        return False

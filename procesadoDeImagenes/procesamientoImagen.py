@@ -3,7 +3,7 @@ from PIL import Image
 import re
 
 DEFAULT_AUTH = "facebook"
-image_path = 'intento.png'
+image_path = 'procesadoDeImagenes/recorte.png'
 image = Image.open(image_path)
 #image.show()
 grayscale_image = image.convert('L')

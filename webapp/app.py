@@ -5,22 +5,25 @@ import re
 import time
 from src import conectandoDispositivo
 from src import LaTodopoderosa
+from src import procesamientoImagen
+from src import abrirNav
 
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta'  # Clave secreta para proteger las sesiones
+abrirNav.open()
 
 # Función para generar un token de 6 caracteres
 def obtener_token_desde_fono():
-    conectandoDispositivo.captura()
-    time.sleep(2)
+    
     LaTodopoderosa.hackear()
 
-    #Procesar imagen y generar token.txt
+    # Procesar imagen y generar token.txt
+    procesamientoImagen.procesar()
 
-    with open('token.txt', 'r') as archivo:
+    with open('webapp/token.txt', 'r') as archivo:
         token = archivo.read()
 
-    token = re.search(r'\d*',token)
+    token = re.search(r'\d*', token)
     return token[0]
 
 # Ruta para el formulario de inicio de sesión
@@ -34,12 +37,21 @@ def login():
 # Ruta para la página del token generado
 @app.route('/token_page')
 def token_page():
-    token = obtener_token_desde_fono()
-    if token:
-        time.sleep(10)
-        return redirect(url_for('index', token=token))
+    return render_template('token_page.html', token=None, mensaje="Generando token...")
+
+@app.route('/get_token', methods=['GET'])
+def get_token():
+    b = conectandoDispositivo.captura()
+    if b:
+        tok = obtener_token_desde_fono()
+        return jsonify(token=tok)
     else:
-        return render_template('token_page.html', token=None, mensaje="Por favor, conecte el USB")
+        return jsonify(error="Por favor, conecte el USB")
+
+# Ruta para la página index
+@app.route('/index')
+def index():
+    return render_template('index.html', mensaje="Gracias por ver")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
