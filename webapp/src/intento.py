@@ -1,6 +1,5 @@
 import subprocess
 import time
-from src import conectandoDispositivo
 
 
 def start_scrcpy(id):

@@ -2,7 +2,6 @@ import usb.core
 import usb.util
 import usb.backend.libusb1
 import subprocess
-import time
 from src import identifier
 
 # Obtener el backend de libusb
@@ -34,11 +33,6 @@ def get_connected_devices():
     print(devices)
     return devices
 
-###def take_screenshot():
-###    # Tomar una captura de pantalla y guardarla en el almacenamiento interno
-###    subprocess.run(['adb', 'shell', 'screencap', '-p', '/storage/emulated/0/screenshot.png'])
-###    print("Captura de pantalla tomada y guardada en /storage/emulated/0/screenshot.png")
-
 def captura():
     ##restart_adb_server()
     #while True:
@@ -49,7 +43,6 @@ def captura():
         if adb_devices:
             print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
             #time.sleep(1)
-            #screen.genera_fichero()
             return True
         else:
             print("Esperando conexión ADB del dispositivo Android...")

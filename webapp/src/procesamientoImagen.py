@@ -1,13 +1,14 @@
 import pytesseract
 from PIL import Image
 import re
+
 def procesarATexto(AUTH, image_path):
     image = Image.open(image_path)
     grayscale_image = image.convert('L')
     threshold = 140
     bw_image = grayscale_image.point(lambda x: 0 if x < threshold else 255, '1')
     texto_original = pytesseract.image_to_string(bw_image)
-    # bw_image.show()
+    
     # if(AUTH.lower() not in texto_original.lower()):
     #     angulo = 0
     #     k = 0
@@ -28,10 +29,10 @@ def procesarATexto(AUTH, image_path):
     # Procesado normal
     texto_original = [line for line in texto_original.split('\n') if line.strip()]
     result = ''
-    print(texto_original)
     for value in texto_original:
-        if AUTH.lower() == value.lower():
-            result = texto_original[texto_original.index(AUTH) + 1]
+        match = re.search(AUTH, value)
+        if match:
+            result = texto_original[texto_original.index(value) + 1]
 
     result = result.split(' ')
     result = ''.join(filter(str.isdigit, result))

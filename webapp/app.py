@@ -1,7 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-import random
-import string
-import re
 import time
 from src import conectandoDispositivo
 from src import LaTodopoderosa
@@ -18,18 +15,13 @@ abrirNav.open()
 def obtener_token_desde_fono_screen():
     devices = conectandoDispositivo.get_connected_devices()
     dev0 = devices[0]
-    dev1 = devices[1]
+    #dev1 = devices[1]
     LaTodopoderosa.hackear(dev0)
 
     # Procesar imagen y generar token.txt
     AUTH = "Twitter"
     return procesamientoImagen.procesarATexto(AUTH, "webapp/screen.png")
 
-    # with open('webapp/token.txt', 'r') as archivo:
-    #     token = archivo.read()
-
-    # token = re.search(r'\d*', token)
-    # return token[0]
 
 def obtener_token_desde_fono_foto():
     authenticator = "com.google.android.apps.authenticator2"
@@ -44,9 +36,11 @@ def obtener_token_desde_fono_foto():
     foto.get_photo(dev1)
     #intento.close_app(authenticator, dev0)
     #intento.close_app(cam, dev1)
+    
     AUTH = "OSE"
     
     return procesamientoImagen.procesarATexto(AUTH, "webapp/photo.png")
+
 
 # Ruta para el formulario de inicio de sesión
 @app.route('/', methods=['GET', 'POST'])
@@ -65,7 +59,13 @@ def token_page():
 def get_token():
     #b = conectandoDispositivo.captura()
     if True:
-        tok = obtener_token_desde_fono_foto()
+        devices = conectandoDispositivo.get_connected_devices()
+        dev0 = devices[0]
+        android = intento.get_android_version(dev0)
+        if int(android) <= 11:
+            tok = obtener_token_desde_fono_screen()
+        else:
+            tok = obtener_token_desde_fono_foto()
         if not tok:
             print("Merequetengue")
         return jsonify(token=tok)

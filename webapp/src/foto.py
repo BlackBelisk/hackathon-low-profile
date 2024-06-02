@@ -3,30 +3,17 @@ from adb_shell.adb_message import AdbMessage
 from adb_shell.auth.sign_pythonrsa import PythonRSASigner
 import subprocess
 import time
-from src import screen
-from src import conectandoDispositivo
+#from src import screen
+#from src import conectandoDispositivo
 from src import intento
 # Función para tomar una foto usando ADB
 def take_photo(cam, id):
-    # Comando ADB para tomar una foto (puede variar dependiendo del dispositivo)
-    #adb_cmd = "input keyevent KEYCODE_CAMERA"
-    #adb_cmd1 = "am start -a android.media.action.IMAGE_CAPTURE"
-    adb_cmd2 = "input keyevent KEYCODE_FOCUS"
+    # Comando ADB para tomar una foto
     adb_cmd3 = "input keyevent KEYCODE_CAMERA"
-    adb_cmd4 = "am force-stop com.motorola.camera3"
-    adb_cmd5 = "input tap 500 500"
-
-    # Ejecutar el comando ADB
-    #subprocess.run(["adb", "-s", id, "shell", adb_cmd1])
     intento.launch_app(cam, id)
     time.sleep(3)
     subprocess.run(["adb", "-s", id,"shell", adb_cmd3])
     time.sleep(2)
-    #time.sleep(5)
-    #screen.take_screenshot(id)
-    #subprocess.run(["adb", "shell", adb_cmd3])
-    #time.sleep(2)
-    #subprocess.run(["adb", "shell", adb_cmd4])
 
 
 # Función para obtener la foto desde el dispositivo
@@ -42,7 +29,4 @@ def get_photo(id):
     # Ejecutar el comando ADB
     subprocess.run(["adb", "-s", id, "pull", photo, filename])
 
-# Tomar una foto
-#take_photo()
-# Obtener la foto
-#get_photo()
+
