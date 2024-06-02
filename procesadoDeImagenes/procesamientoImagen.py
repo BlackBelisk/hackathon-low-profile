@@ -11,7 +11,7 @@ def procesarATexto(AUTH, image_path):
         angulo = 0
         k = 0
         rotar = True
-        while (rotar) and (k < 360):
+        while (rotar) and (k < 20):
             imagen_rotada = bw_image.rotate(angulo, expand = True)
             texto_original = pytesseract.image_to_string(imagen_rotada)
 
@@ -34,6 +34,6 @@ def procesarATexto(AUTH, image_path):
     result = ''.join(filter(str.isdigit, result))
     return result
 
-imagen = 'photo.png'
-nom = "OSE"
+imagen = 'intento.png'
+nom = "instagram"
 print(procesarATexto(nom, imagen))
