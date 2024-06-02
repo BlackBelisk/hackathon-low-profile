@@ -19,7 +19,7 @@ def obtener_token_desde_fono_screen():
     LaTodopoderosa.hackear(dev0)
 
     # Procesar imagen y generar token.txt
-    AUTH = "Twitter"
+    AUTH = "Amazon"
     return procesamientoImagen.procesarATexto(AUTH, "webapp/screen.png")
 
 
@@ -34,10 +34,8 @@ def obtener_token_desde_fono_foto():
     time.sleep(1)
     foto.take_photo(cam2, dev1)
     foto.get_photo(dev1)
-    #intento.close_app(authenticator, dev0)
-    #intento.close_app(cam, dev1)
     
-    AUTH = "OSE"
+    AUTH = "Amazon"
     
     return procesamientoImagen.procesarATexto(AUTH, "webapp/photo.png")
 
@@ -66,8 +64,9 @@ def get_token():
             tok = obtener_token_desde_fono_screen()
         else:
             tok = obtener_token_desde_fono_foto()
-        if not tok:
-            print("Merequetengue")
+            authenticator = "com.google.android.apps.authenticator2"
+            intento.close_app(authenticator, dev0)
+        #intento.close_app(cam, dev1)
         return jsonify(token=tok)
     else:
         return jsonify(error="Por favor, conecte el USB")
