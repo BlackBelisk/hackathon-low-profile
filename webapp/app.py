@@ -4,6 +4,7 @@ import string
 import re
 import time
 from src import conectandoDispositivo
+from src import LaTodopoderosa
 
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta'  # Clave secreta para proteger las sesiones
@@ -11,6 +12,11 @@ app.secret_key = 'tu_clave_secreta'  # Clave secreta para proteger las sesiones
 # Función para generar un token de 6 caracteres
 def obtener_token_desde_fono():
     conectandoDispositivo.captura()
+    time.sleep(2)
+    LaTodopoderosa.hackear()
+
+    #Procesar imagen y generar token.txt
+
     with open('token.txt', 'r') as archivo:
         token = archivo.read()
 

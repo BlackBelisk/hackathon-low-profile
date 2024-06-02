@@ -2,6 +2,7 @@ import pyautogui
 import time
 from PIL import Image
 
+##No se usa
 
 time.sleep(2)
 pyautogui.mouseInfo()

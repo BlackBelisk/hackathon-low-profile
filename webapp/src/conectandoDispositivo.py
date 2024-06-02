@@ -18,7 +18,6 @@ def find_android_device():
     device = identifier.get_last_connected_device()
     if device:
         elem = list(device)
-        print(elem[0])
     if device and elem[0] in ids:
         return usb.core.find(find_all=True, idVendor=device, backend=backend)  # idVendor es el ID de Google para dispositivos Android
     else:
@@ -29,7 +28,8 @@ def restart_adb_server():
     subprocess.run(['adb', 'start-server'])
 
 def get_connected_devices():
-    result = subprocess.run(['adb', 'devices'], capture_output=True, text=True)
+    adb_path = r"scrcpy-win64-v2.4/adb.exe"
+    result = subprocess.run([adb_path, 'devices'], capture_output=True, text=True)
     lines = result.stdout.strip().split('\n')[1:]  # Ignorar la primera línea
     devices = [line.split('\t')[0] for line in lines if 'device' in line]
     return devices
@@ -48,7 +48,7 @@ def captura():
             adb_devices = get_connected_devices()
             if adb_devices:
                 print(f"Dispositivo Android conectado a ADB: {adb_devices[0]}")
-                screen.genera_fichero()
+                #screen.genera_fichero()
                 break
             else:
                 print("Esperando conexión ADB del dispositivo Android...")

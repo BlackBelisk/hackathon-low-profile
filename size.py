@@ -1,5 +1,7 @@
 import subprocess
 
+##No se usa
+
 # Función para obtener la resolución del dispositivo
 def get_device_resolution():
     # Ejecutar el comando adb para obtener el tamaño de la pantalla
