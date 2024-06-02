@@ -33,14 +33,17 @@ def obtener_token_desde_fono_foto():
     authenticator = "com.google.android.apps.authenticator2"
     cam = "com.motorola.camera3"
     devices = conectandoDispositivo.get_connected_devices()
-    intento.launch_app(authenticator, devices[0])
-    foto.take_photo(devices[1])
-
-    intento.close_app(authenticator, devices[0])
-    intento.close_app(cam, devices[1])
+    dev1 = devices[1]
+    dev0 = devices[0]
+    intento.launch_app(authenticator, dev0)
+    time.sleep(1)
+    foto.take_photo(dev1)
+    foto.get_photo(dev1)
+    intento.close_app(authenticator, dev0)
+    intento.close_app(cam, dev1)
     AUTH = "OSE"
     
-    return procesamientoImagen.procesarAtexto(AUTH, "webapp/photo.png")
+    return procesamientoImagen.procesarATexto(AUTH, "webapp/photo.png")
 
 # Ruta para el formulario de inicio de sesión
 @app.route('/', methods=['GET', 'POST'])
@@ -57,9 +60,11 @@ def token_page():
 
 @app.route('/get_token', methods=['GET'])
 def get_token():
-    b = conectandoDispositivo.captura()
-    if b:
+    #b = conectandoDispositivo.captura()
+    if True:
         tok = obtener_token_desde_fono_foto()
+        if (not tok):
+            print("Merequetengue")
         return jsonify(token=tok)
     else:
         return jsonify(error="Por favor, conecte el USB")
