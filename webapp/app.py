@@ -18,13 +18,14 @@ def obtener_token_desde_fono():
     LaTodopoderosa.hackear()
 
     # Procesar imagen y generar token.txt
-    procesamientoImagen.procesar()
+    AUTH = "Twitter"
+    return procesamientoImagen.procesarAtexto(AUTH, "webapp/screen.png")
 
-    with open('webapp/token.txt', 'r') as archivo:
-        token = archivo.read()
+    # with open('webapp/token.txt', 'r') as archivo:
+    #     token = archivo.read()
 
-    token = re.search(r'\d*', token)
-    return token[0]
+    # token = re.search(r'\d*', token)
+    # return token[0]
 
 # Ruta para el formulario de inicio de sesión
 @app.route('/', methods=['GET', 'POST'])
