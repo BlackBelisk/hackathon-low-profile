@@ -3,10 +3,11 @@ import time
 
 
 
-def start_scrcpy():
+def start_scrcpy(id):
     try:
         # Command to execute scrcpy in a separate process
-        ventana = subprocess.Popen(["scrcpy-win64-v2.4/scrcpy.exe"])
+        path = "scrcpy-win64-v2.4/scrcpy.exe"
+        ventana = subprocess.Popen([path, "-s", id])
         return ventana
     except subprocess.CalledProcessError as e:
         print(f"Error executing scrcpy: {e}")
@@ -47,24 +48,7 @@ def get_android_version():
         print(f"Error al obtener la versión de Android: {e}")
         return None
     
-def doxxeo():
-    ventana = start_scrcpy()
-    version_android = get_android_version()
-
-    if version_android:
-        print(f"Versión de Android del dispositivo: {version_android}")
-        try:
-            android_version_int = int(version_android)
-            if android_version_int >= 11:
-                print("No es posible duplicar la pantalla de Google Authenticator.")
-                app_package_name = "com.example.Gen"
-            else:
-                app_package_name = "com.google.android.apps.authenticator2" # Package name of the app you want to open
-            time.sleep(2)
-            launch_app(app_package_name)
-            return ventana
-        except ValueError:
-            print("La versión de Android no es un número válido.")
-    else:
-        print("No se pudo obtener la versión de Android del dispositivo.")
-    return False
+def doxxeo(id):
+    ventana = start_scrcpy(id)
+    #version_android = get_android_version()
+    return ventana

