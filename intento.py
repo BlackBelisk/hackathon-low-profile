@@ -31,7 +31,8 @@ def doxxeo():
     start_scrcpy()
     
     # Package name of the app you want to open
-    app_package_name = "com.google.android.apps.authenticator2"
+    #app_package_name = "com.google.android.apps.authenticator2"
+    app_package_name = "com.example.Gen"
     
     # Wait for a few seconds to allow scrcpy to start
     time.sleep(2)
