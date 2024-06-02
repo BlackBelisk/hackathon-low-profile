@@ -27,17 +27,36 @@ def get_device_model():
         print(f"Error getting device model: {e}")
         return None
 
+def get_android_version():
+    try:
+        # Ejecutar el comando adb shell getprop ro.build.version.release y capturar la salida
+        adb_path = r"scrcpy-win64-v2.4/adb.exe"
+        result = subprocess.run([adb_path, "shell", "getprop", "ro.build.version.release"], capture_output=True, text=True, check=True)
+        
+        # Extraer y devolver la versión de Android del resultado
+        android_version = result.stdout.strip()
+        return android_version
+    except subprocess.CalledProcessError as e:
+        print(f"Error al obtener la versión de Android: {e}")
+        return None
+    
 def doxxeo():
     start_scrcpy()
-    
-    # Package name of the app you want to open
-    #app_package_name = "com.google.android.apps.authenticator2"
-    app_package_name = "com.example.Gen"
-    
-    # Wait for a few seconds to allow scrcpy to start
-    time.sleep(2)
-    
-    # Launch the specific app
-    launch_app(app_package_name)
+    version_android = get_android_version()
 
-
+    if version_android:
+        print(f"Versión de Android del dispositivo: {version_android}")
+        try:
+            android_version_int = int(version_android)
+            if android_version_int >= 11:
+                print("No es posible duplicar la pantalla de Google Authenticator.")
+            else:
+                app_package_name = "com.google.android.apps.authenticator2" # Package name of the app you want to open
+                time.sleep(2)
+                launch_app(app_package_name) # Launch the specific app
+                return True
+        except ValueError:
+            print("La versión de Android no es un número válido.")
+    else:
+        print("No se pudo obtener la versión de Android del dispositivo.")
+    return False
