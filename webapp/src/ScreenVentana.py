@@ -30,7 +30,7 @@ def capture_window(window_title, output_file):
         screenshot = pyautogui.screenshot(region=(left, top, right - left, bottom - top))
 
         # Guardar la captura de pantalla
-        screenshot.save("webapp/" + output_file)
+        screenshot.save(output_file)
 
         print(f"Captura de pantalla guardada como {output_file}")
     except IndexError:

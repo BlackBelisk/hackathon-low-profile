@@ -16,12 +16,14 @@ abrirNav.open()
 
 # Función para generar un token de 6 caracteres
 def obtener_token_desde_fono_screen():
-    
-    LaTodopoderosa.hackear()
+    devices = conectandoDispositivo.get_connected_devices()
+    dev0 = devices[0]
+    dev1 = devices[1]
+    LaTodopoderosa.hackear(dev0)
 
     # Procesar imagen y generar token.txt
     AUTH = "Twitter"
-    return procesamientoImagen.procesarAtexto(AUTH, "webapp/screen.png")
+    return procesamientoImagen.procesarATexto(AUTH, "webapp/screen.png")
 
     # with open('webapp/token.txt', 'r') as archivo:
     #     token = archivo.read()
@@ -39,8 +41,8 @@ def obtener_token_desde_fono_foto():
     time.sleep(1)
     foto.take_photo(dev1)
     foto.get_photo(dev1)
-    intento.close_app(authenticator, dev0)
-    intento.close_app(cam, dev1)
+    #intento.close_app(authenticator, dev0)
+    #intento.close_app(cam, dev1)
     AUTH = "OSE"
     
     return procesamientoImagen.procesarATexto(AUTH, "webapp/photo.png")
@@ -63,7 +65,7 @@ def get_token():
     #b = conectandoDispositivo.captura()
     if True:
         tok = obtener_token_desde_fono_foto()
-        if (not tok):
+        if not tok:
             print("Merequetengue")
         return jsonify(token=tok)
     else:

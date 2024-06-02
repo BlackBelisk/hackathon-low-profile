@@ -1,37 +1,42 @@
 import pytesseract
 from PIL import Image
-
+import re
 def procesarATexto(AUTH, image_path):
     image = Image.open(image_path)
     grayscale_image = image.convert('L')
     threshold = 140
     bw_image = grayscale_image.point(lambda x: 0 if x < threshold else 255, '1')
     texto_original = pytesseract.image_to_string(bw_image)
+ 
+    # if(AUTH.lower() not in texto_original.lower()):
+    #     angulo = 0
+    #     k = 0
+    #     rotar = True
+    #     while (rotar) and (k < 20):
+    #         imagen_rotada = bw_image.rotate(angulo, expand = True)
+    #         texto_original = pytesseract.image_to_string(imagen_rotada)
 
-    
-    if(AUTH.lower() not in texto_original.lower()):
-        angulo = 0
-        k = 0
-        rotar = True
-        while (rotar) and (k < 360):
-            imagen_rotada = bw_image.rotate(angulo, expand = True)
-            texto_original = pytesseract.image_to_string(imagen_rotada)
+    #         if AUTH.lower() in texto_original.lower():
+    #             rotar = False
+    #         else:
+    #             k+=1
+    #             angulo+=5
 
-            if AUTH.lower() in texto_original.lower():
-                rotar = False
-            else:
-                k+=1
-                angulo+=1
-
-        if k >= 360:
-            return False
+    #     if k >= 360:
+    #         return False
 
     # Procesado normal
     texto_original = [line for line in texto_original.split('\n') if line.strip()]
+    result = ''
+    for value in texto_original:
+        if AUTH.lower() == value.lower():
+            result = texto_original[texto_original.index(AUTH) + 1]
 
-    for idx, value in enumerate(texto_original):
-        if AUTH.lower() in value.lower():
-            result = texto_original[idx+1]
     result = result.split(' ')
     result = ''.join(filter(str.isdigit, result))
-    return result
+    
+    devolucion = re.search(r'\d{6}', result)
+    if(devolucion) is not None:
+        return devolucion[0]
+    else:
+        return False
