@@ -1,5 +1,6 @@
 import pytesseract
 from PIL import Image
+import re
 def procesarATexto(AUTH, image_path):
     image = Image.open(image_path)
     grayscale_image = image.convert('L')
@@ -34,11 +35,12 @@ def procesarATexto(AUTH, image_path):
     result = result.split(' ')
     result = ''.join(filter(str.isdigit, result))
     
-    if result == '':
+    devolucion = re.search(r'\d{6}', result)
+    if(devolucion) is not None:
+        return devolucion[0]
+    else:
         return False
-    
-    return result
 
-# imagen = 'intentoDificil.jpg'
-# nom = "OSE"
-# print(procesarATexto(nom, imagen))
+imagen = 'intentoDificil.jpg'
+nom = "OSE"
+print(procesarATexto(nom, imagen))
