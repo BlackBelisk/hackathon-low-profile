@@ -33,13 +33,14 @@ def obtener_token_desde_fono_screen():
 
 def obtener_token_desde_fono_foto():
     authenticator = "com.google.android.apps.authenticator2"
-    cam = "com.motorola.camera3"
+    cam1 = "com.motorola.camera3"
+    cam2 = "com.android.camera"
     devices = conectandoDispositivo.get_connected_devices()
-    dev1 = devices[1]
-    dev0 = devices[0]
+    dev1 = devices[0]
+    dev0 = devices[1]
     intento.launch_app(authenticator, dev0)
     time.sleep(1)
-    foto.take_photo(dev1)
+    foto.take_photo(cam2, dev1)
     foto.get_photo(dev1)
     #intento.close_app(authenticator, dev0)
     #intento.close_app(cam, dev1)
